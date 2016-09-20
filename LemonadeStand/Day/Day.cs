@@ -10,7 +10,6 @@ namespace LemonadeStand
     {
         int customersToday;
         Random random = new Random();
-        public int glassesLeft;
         Pitcher pitcher = new Pitcher();
 
         public void calculateCustomersToday()
@@ -46,13 +45,13 @@ namespace LemonadeStand
         }
         public void buyglass(Player player,bool buy)
         {
-            if (buy == true && glassesLeft > 0 && player.playerInventory.cupsCount >= 1 && player.playerInventory.iceCubesCount >= player.recipeIce)
+            if (buy == true && pitcher.glassesLeft > 0 && player.playerInventory.cupsCount >= 1 && player.playerInventory.iceCubesCount >= player.recipeIce)
             {
                 player.playerInventory.removeIce(player.recipeIce);
                 player.playerInventory.removeCups(1);
                 player.playerInventory.addCash(player.glassPrice);
             }
-            else if(buy == true && glassesLeft > 0 && player.playerInventory.cupsCount >= 1 && player.playerInventory.iceCubesCount >= player.recipeIce)
+            else if(buy == true && pitcher.glassesLeft > 0 && player.playerInventory.cupsCount >= 1 && player.playerInventory.iceCubesCount >= player.recipeIce)
             {
                 makePitcher(player);
                 buyglass(player, buy);
