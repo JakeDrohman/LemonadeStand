@@ -22,7 +22,7 @@ namespace LemonadeStand
             inventory.displayInventory();
             Console.WriteLine("{0}{0}-----Shop-----",Environment.NewLine);
             Console.WriteLine("Type an ingredient or type done and press enter. Make note of the weather located at the top"+
-                " right, it WILL affect sales.");
+                " right, it WILL affect sales");
             Console.WriteLine("lemons {0}sugar {0}ice {0}cups {0}{0}done",Environment.NewLine);
             string input = Console.ReadLine();
             switch (input)
