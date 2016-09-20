@@ -8,17 +8,25 @@ namespace LemonadeStand
 {
     class Customer
     {
-        Random random = new Random();
         public decimal willingnessToPay;
         decimal weathermultiplier = 0.05m;
         decimal baseWillingnessToPay = 0.5m;
+        Random random;
+        int randomInteger;
+        bool bought;
         //willingness to pay is the very most that someone could charge for a product and they will still pay for it.
-        public void calculateWillingnessToPay(Enviornment enviornment)
+        public Customer()
         {
-            calculateBaseWillingnessToPay(enviornment);
-            willingnessToPay = baseWillingnessToPay - (enviornment.weather * weathermultiplier) + (random.Next(1, 21) / 100);
+            random = new Random();
+
         }
-        public void calculateBaseWillingnessToPay(Enviornment enviornment)
+        public void CalculateWillingnessToPay(Weather weather, Random random)
+        {
+            CalculateBaseWillingnessToPay(weather);
+            randomInteger = (random.Next(1, 51));
+            willingnessToPay = (baseWillingnessToPay - (weather.weather * weathermultiplier) + (randomInteger*0.01m));
+        }
+        public void CalculateBaseWillingnessToPay(Weather enviornment)
         {
             if (enviornment.temperature > 90)
             {
@@ -41,7 +49,7 @@ namespace LemonadeStand
                 baseWillingnessToPay = 0.15m;
             }
         }
-        public bool checkIfBuy(Player player)
+        public bool CheckIfBuy(Player player)
         {
             if(player.glassPrice <= willingnessToPay)
             {
@@ -51,6 +59,11 @@ namespace LemonadeStand
             {
                 return false;
             }
+        }
+        public void AddLemonade()
+        {
+            Lemonade tastyLemonade = new Lemonade();
+            bought = true;
         }
     }
 }

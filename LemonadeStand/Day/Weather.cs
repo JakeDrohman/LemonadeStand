@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Enviornment
+    class Weather
     {
         public int temperature;
         public int weather;
@@ -14,18 +14,23 @@ namespace LemonadeStand
         //1 = mostly sunny
         //2 = mostly cloudy
         //3 = rain
-        List<string> weatherTypes = new List<string> {"Sunny","Mostly Sunny","Mostly Cloudy","Rainy"};
-        Random random = new Random();
+        Random random;
+        List<string> weatherTypes;
         char degrees = (char)176;
-        public void decideWeather()
+        public Weather()
+        {
+            this.weatherTypes = new List<string> { "Sunny", "Mostly Sunny", "Mostly Cloudy", "Rainy" };
+            this.random = new Random();
+        }
+        public void DecideWeather()
         {
             weather = random.Next(0, 4);
         }
-        public void decideTemperature()
+        public void DecideTemperature()
         {
             temperature = random.Next(55, 101);
         }
-        public void showWeather()
+        public void ShowWeather()
         {
             Console.WriteLine("Today it will be {0} and {1}{2}", weatherTypes.ElementAt(weather), temperature, degrees);
         }

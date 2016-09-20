@@ -9,16 +9,26 @@ namespace LemonadeStand
     class Inventory
     {
         public decimal cash;
+        public int glassesSold;
         public int lemonsCount;
         public int cupsOfSugarCount;
         public int iceCubesCount;
         public int cupsCount;
-        List<Lemon> lemons = new List<Lemon>();
-        List<Sugar> sugar = new List<Sugar>();
-        List<Ice_Cube> iceCubes = new List<Ice_Cube>();
-        List<Cup> cups = new List<Cup>();
+        public int lemonadeCount;
+        Pitcher pitcher;
+        List<Lemon> lemons;
+        List<Sugar> sugar;
+        List<Ice_Cube> iceCubes;
+        List<Cup> cups;
+        List<Lemonade> glassesOfLemonade;
         public Inventory()
         {
+            this.pitcher = new Pitcher();
+            this.lemons = new List<Lemon>();
+            this.sugar = new List<Sugar>();
+            this.iceCubes = new List<Ice_Cube>();
+            this.cups = new List<Cup>();
+            this.glassesOfLemonade = new List<Lemonade>();
             cash =20.00m;
         }
 
@@ -31,7 +41,7 @@ namespace LemonadeStand
             }
             lemonsCount = lemons.Count;
         }
-        public void removeLemons(int numberToRemove)
+        public void RemoveLemons(int numberToRemove)
         {
             for (int i = 1; i <= numberToRemove; i++)
             {
@@ -48,7 +58,7 @@ namespace LemonadeStand
             }
             cupsOfSugarCount = sugar.Count;
         }
-        public void removeSugar(int numberToRemove)
+        public void RemoveSugar(int numberToRemove)
         {
             for (int i = 1; i <= numberToRemove; i++)
             {
@@ -102,6 +112,39 @@ namespace LemonadeStand
         {
             Console.WriteLine("Inventory:{0}Cash: ${1}{0}Lemons: {2}{0}Cups of Sugar: {3}{0}Ice Cubes: {4}{0}Cups:{5}", Environment.NewLine,cash,lemonsCount
                 ,cupsOfSugarCount,iceCubesCount,cupsCount);
+        }
+        public void FillPitcher(Player player)
+        {
+            if(lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar)
+            {
+                for (int i = 1; i <= 10; i++)
+                {
+                    Lemonade lemonade = new Lemonade();
+                    glassesOfLemonade.Add(lemonade);
+                }
+                RemoveLemons(player.recipeLemons);
+                RemoveSugar(player.recipeSugar);
+                lemonadeCount = glassesOfLemonade.Count;
+            }
+        }
+        public void SellLemonade(Player player)
+        {
+            if (lemonadeCount > 0 && lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar)
+            {
+                glassesOfLemonade.RemoveAt(0);
+                lemonadeCount = glassesOfLemonade.Count;
+                addCash(player.glassPrice);
+                glassesSold++;
+            }
+            else if(lemonadeCount == 0 && lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar)
+            {
+                FillPitcher(player);
+                SellLemonade(player);
+            }
+            else
+            {
+                Console.WriteLine("Insufficient Ingredients, Missed Sales!");
+            }
         }
     }
 }

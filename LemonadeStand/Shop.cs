@@ -8,45 +8,58 @@ namespace LemonadeStand
 {
     class Shop
     {
-        public void runshop(Inventory inventory,Enviornment enviornment)
+        public void Runshop(Inventory inventory,Weather weather)
         {
-            enviornment.decideTemperature();
-            enviornment.decideWeather();
-            enviornment.showWeather();
-            displayShopHome(inventory);
+            weather.DecideTemperature();
+            weather.DecideWeather();
+            weather.ShowWeather();
+            DisplayShopHome(inventory, weather);
 
         }
-        public void displayShopHome(Inventory inventory)
+        public void DisplayShopHome(Inventory inventory,Weather weather)
         {
+            weather.ShowWeather();
             inventory.displayInventory();
-            Console.WriteLine("-----Shop-----");
-            Console.WriteLine("Type an ingredient or type done and press enter.");
+            Console.WriteLine("{0}{0}-----Shop-----",Environment.NewLine);
+            Console.WriteLine("Type an ingredient or type done and press enter. Make note of the weather located at the top"+
+                " right, it WILL affect sales.");
             Console.WriteLine("lemons {0}sugar {0}ice {0}cups {0}{0}done",Environment.NewLine);
             string input = Console.ReadLine();
             switch (input)
             {
                 case ("cups"):
-                    displayCups(inventory);
+                    Console.Clear();
+                    DisplayCups(inventory,weather);
                     break;
                 case ("lemons"):
-                    displayLemons(inventory);
+                    Console.Clear();
+                    DisplayLemons(inventory,weather);
                     break;
                 case ("sugar"):
-                    displaySugar(inventory);
+                    Console.Clear();
+                    DisplaySugar(inventory, weather);
                     break;
                 case ("ice"):
-                    displayIce(inventory);
+                    Console.Clear();
+                    DisplayIce(inventory, weather);
+                    break;
+                case ("weather"):
+                    Console.Clear();
+                    weather.ShowWeather();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("done"):
+                    Console.Clear();
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input(all lowercase)");
-                    displayShopHome(inventory);
+                    DisplayShopHome(inventory,weather);
                     break;
             }
         }
-        public void displayCups(Inventory inventory)
+        public void DisplayCups(Inventory inventory,Weather weather)
         {
+            
             inventory.displayInventory();
             Console.WriteLine("Enter the amount you would like to buy {0}Cups: {0}25 for  $0.95{0}50  for $1.49{0}"+
                 "100 for $2.49{0}go back", Environment.NewLine);
@@ -63,7 +76,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayCups(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("50"):
                     if (inventory.cash >= 1.49m)
@@ -75,7 +89,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayCups(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("100"):
                     if (inventory.cash >= 2.49m)
@@ -87,21 +102,24 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayCups(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("go back"):
-                    displayShopHome(inventory);
+                    DisplayShopHome(inventory, weather);
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
-                    displayCups(inventory);
+                    Console.ReadKey();
+                    Console.Clear();
+                    DisplayCups(inventory, weather);
                     break;
             }
         }
-        public void displayLemons(Inventory inventory)
+        public void DisplayLemons(Inventory inventory,Weather weather)
         {
             inventory.displayInventory();
-            Console.WriteLine("Enter the amount you would like to buy {0}Lemons: {0}10 for  $0.99{0}25  for $1.99{0}" +
+            Console.WriteLine("Enter the amount you would like to buy {0}Lemons: {0}10  for $0.99{0}25  for $1.99{0}" +
                 "75  for $4.49{0}go back", Environment.NewLine);
             string buyinput = Console.ReadLine();
             switch (buyinput)
@@ -116,7 +134,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayLemons(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("25"):
                     if (inventory.cash >= 1.99m)
@@ -128,7 +147,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayLemons(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("75"):
                     if (inventory.cash >= 4.49m)
@@ -140,18 +160,20 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayLemons(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("go back"):
-                    displayShopHome(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
-                    displayLemons(inventory);
+                    DisplayLemons(inventory, weather);
                     break;
             }
         }
-        public void displaySugar(Inventory inventory)
+        public void DisplaySugar(Inventory inventory,Weather weather)
         {
             inventory.displayInventory();
             Console.WriteLine("Enter the amount you would like to buy {0}Sugar: {0}8  for  $0.79{0}20  for $1.49{0}" +
@@ -169,7 +191,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displaySugar(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("20"):
                     if (inventory.cash >= 1.49m)
@@ -181,7 +204,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displaySugar(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("48"):
                     if (inventory.cash >= 2.99m)
@@ -193,18 +217,20 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displaySugar(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("go back"):
-                    displayShopHome(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
-                    displaySugar(inventory);
+                    DisplaySugar(inventory, weather);
                     break;
             }
         }
-        public void displayIce(Inventory inventory)
+        public void DisplayIce(Inventory inventory,Weather weather)
         {
             inventory.displayInventory();
             Console.WriteLine("Enter the amount you would like to buy {0}Ice Cubes: {0}100 for $0.95{0}250 for $1.99{0}" +
@@ -222,7 +248,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayIce(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("250"):
                     if (inventory.cash >= 1.99m)
@@ -234,7 +261,8 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayIce(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("500"):
                     if (inventory.cash >= 2.99m)
@@ -246,14 +274,16 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Insufficient Funds");
                     }
-                    displayIce(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 case ("go back"):
-                    displayShopHome(inventory);
+                    Console.Clear();
+                    DisplayShopHome(inventory, weather);
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
-                    displayIce(inventory);
+                    DisplayIce(inventory, weather);
                     break;
             }
         }

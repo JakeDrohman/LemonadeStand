@@ -9,52 +9,43 @@ namespace LemonadeStand
     class Day
     {
         int customersToday;
-        Random random = new Random();
-        Pitcher pitcher = new Pitcher();
-
+        Random random;
+        List<Customer> customers;
+        public Day(Random random)
+        {
+            this.random = random;
+            customers = new List<Customer>();
+        }
         public void calculateCustomersToday()
         {
             customersToday = random.Next(60, 121);
         }
-        public void makePitcher(Player player)
+        public void runDay(Player player,Weather weather)
         {
-            if(player.playerInventory.lemonsCount >= player.recipeLemons && player.playerInventory.cupsOfSugarCount >= player.recipeSugar)
-            {
-                player.playerInventory.removeLemons(player.recipeLemons);
-                player.playerInventory.removeSugar(player.recipeSugar);
-                pitcher.refill();
-            }
-            else
-            {
-                Console.WriteLine("Insufficient Ingredients, Missed Sale!");
-            }
-        }
-        public void runDay(Player player,Enviornment enviornment)
-        {
-            makePitcher(player);
+            player.playerInventory.FillPitcher(player);
             calculateCustomersToday();
             for(int i = customersToday; i > 0; i--)
             {
                 Customer customer = new Customer();
-                customer.calculateWillingnessToPay(enviornment);
-                bool buy = customer.checkIfBuy(player);
-                buyglass(player, buy);
+                customers.Add(customer);
+                customer.CalculateWillingnessToPay(weather,random);
+                bool buy = customer.CheckIfBuy(player);
+                SellGlass(player, buy,customer);
                 
             }
+            Console.WriteLine("You sold {0} glasses of lemonade today to a potential {1} customers"+
+                ".",player.playerInventory.glassesSold,customersToday);
+            player.playerInventory.glassesSold = 0;
+            Console.ReadKey();
 
         }
-        public void buyglass(Player player,bool buy)
+        public void SellGlass(Player player,bool buy,Customer customer)
         {
-            if (buy == true && pitcher.glassesLeft > 0 && player.playerInventory.cupsCount >= 1 && player.playerInventory.iceCubesCount >= player.recipeIce)
+            if(buy == true)
             {
-                player.playerInventory.removeIce(player.recipeIce);
-                player.playerInventory.removeCups(1);
-                player.playerInventory.addCash(player.glassPrice);
-            }
-            else if(buy == true && pitcher.glassesLeft > 0 && player.playerInventory.cupsCount >= 1 && player.playerInventory.iceCubesCount >= player.recipeIce)
-            {
-                makePitcher(player);
-                buyglass(player, buy);
+                player.playerInventory.SellLemonade(player);
+                customer.AddLemonade();
+
             }
         }
     }

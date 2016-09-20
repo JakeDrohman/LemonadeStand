@@ -47,10 +47,11 @@
     <Compile Include="Inventory\Cup.cs" />
     <Compile Include="Day\Customer.cs" />
     <Compile Include="Day\Day.cs" />
-    <Compile Include="Day\Enviornment.cs" />
+    <Compile Include="Day\Weather.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Inventory\Ice Cube.cs" />
     <Compile Include="Inventory\Lemon.cs" />
+    <Compile Include="Lemonade.cs" />
     <Compile Include="Pitcher.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
