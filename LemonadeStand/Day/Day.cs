@@ -9,6 +9,7 @@ namespace LemonadeStand
     class Day
     {
         int customersToday;
+        int totalCustomers;
         Random random;
         List<Customer> customers;
         public Day(Random random)

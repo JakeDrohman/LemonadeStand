@@ -54,6 +54,7 @@ namespace LemonadeStand
                 default:
                     Console.WriteLine("Please enter a valid input(all lowercase)");
                     DisplayShopHome(inventory,weather);
+                    Console.Clear();
                     break;
             }
         }
@@ -169,6 +170,8 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
+                    Console.ReadKey();
+                    Console.Clear();
                     DisplayLemons(inventory, weather);
                     break;
             }
@@ -226,6 +229,8 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
+                    Console.ReadKey();
+                    Console.Clear();
                     DisplaySugar(inventory, weather);
                     break;
             }
@@ -283,6 +288,8 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input");
+                    Console.ReadKey();
+                    Console.Clear();
                     DisplayIce(inventory, weather);
                     break;
             }
