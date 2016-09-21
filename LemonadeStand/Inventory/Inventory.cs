@@ -129,14 +129,18 @@ namespace LemonadeStand
         }
         public void SellLemonade(Player player)
         {
-            if (lemonadeCount > 0 && lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar)
+            if (lemonadeCount > 0 && lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar &&
+                iceCubesCount >= player.recipeIce && cupsCount > 0)
             {
                 glassesOfLemonade.RemoveAt(0);
                 lemonadeCount = glassesOfLemonade.Count;
                 addCash(player.glassPrice);
                 glassesSold++;
+                removeIce(player.recipeIce);
+                removeCups(1);
             }
-            else if(lemonadeCount == 0 && lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar)
+            else if(lemonadeCount == 0 && lemonsCount >= player.recipeLemons && cupsOfSugarCount >= player.recipeSugar &&
+                iceCubesCount >= player.recipeIce && cupsCount > 0)
             {
                 FillPitcher(player);
                 SellLemonade(player);

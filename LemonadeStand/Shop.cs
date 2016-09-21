@@ -61,7 +61,7 @@ namespace LemonadeStand
         {
             
             inventory.displayInventory();
-            Console.WriteLine("Enter the amount you would like to buy {0}Cups: {0}25 for  $0.95{0}50  for $1.49{0}"+
+            Console.WriteLine("{0}{0}Enter the amount you would like to buy {0}Cups: {0}25 for  $0.95{0}50  for $1.49{0}"+
                 "100 for $2.49{0}go back", Environment.NewLine);
             string buyinput = Console.ReadLine();
             switch (buyinput)

@@ -34,7 +34,7 @@ namespace LemonadeStand
                 day.runDay(player, weather);
                 Console.Clear();
             }
-            Console.WriteLine("You made {0} over 7 days", player.playerInventory.cash);
+            Console.WriteLine("You made {0} over 7 days", (player.playerInventory.cash-20m));
             Console.ReadLine();
         }
     }
