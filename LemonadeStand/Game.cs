@@ -8,14 +8,17 @@ namespace LemonadeStand
 {
     class Game
     {
+        int totalCustomers;
         Weather weather;
         Shop shop;
         Random random;
+        List<Customer> customerList;
         public Game()
         {
             random = new Random();
             weather = new Weather();
             shop = new Shop();
+            customerList = new List<Customer>();
         }
         public void rungame()
         {
@@ -32,9 +35,12 @@ namespace LemonadeStand
                 player.SetPrice();
                 Day day = new Day(random);
                 day.RunDay(player, weather);
+                customerList.AddRange(day.customers);
                 Console.Clear();
             }
-            Console.WriteLine("You made {0} over 7 days", (player.playerInventory.cash-20m));
+            totalCustomers = customerList.Count;
+
+            Console.WriteLine("You made {0} over 7 days and sold lemonade to {1} out of {2} customers",(player.playerInventory.cash-20m), ,totalCustomers);
             Console.ReadLine();
         }
     }

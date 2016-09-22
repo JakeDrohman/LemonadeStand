@@ -19,6 +19,7 @@ namespace LemonadeStand
         decimal optimalIceVariable;
         int optimalSugar;
         int preferenceBoost;
+        decimal preferenceBoostVariable;
         //willingness to pay is the very most that someone could charge for a product and they will still pay for it.
         public Customer()
         {
@@ -32,7 +33,7 @@ namespace LemonadeStand
             CalculateBaseWillingnessToPay(weather);
             CalculatePreferenceVariable(player, random, weather);
             randomInteger = (random.Next(1, 31));
-            willingnessToPay = (baseWillingnessToPay - (weather.weather * weathermultiplier) + (randomInteger*0.01m));
+            willingnessToPay = (baseWillingnessToPay - (weather.weather * weathermultiplier) + (randomInteger*0.01m) + preferenceBoost);
         }
         public void CalculateBaseWillingnessToPay(Weather weather)
         {
@@ -67,6 +68,8 @@ namespace LemonadeStand
             { AddToPreferenceBoost(5); }
             if (player.recipeIce >= optimalIce - tasteRange && player.recipeIce <= optimalIce + tasteRange)
             { AddToPreferenceBoost(5); }
+            decimal temporaryValue = (Convert.ToDecimal(preferenceBoost)) * .01m;
+            temporaryValue = preferenceBoostVariable;
         }
         public void AddToPreferenceBoost(int addedNumber)
         {

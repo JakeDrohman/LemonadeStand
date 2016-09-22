@@ -8,10 +8,9 @@ namespace LemonadeStand
 {
     class Day
     {
-        int customersToday;
-        int totalCustomers;
+        public int customersToday;
         Random random;
-        List<Customer> customers;
+        public List<Customer> customers;
         public Day(Random random)
         {
             this.random = random;
@@ -25,7 +24,6 @@ namespace LemonadeStand
         {
             player.playerInventory.FillPitcher(player);
             calculateCustomersToday();
-            customersToday += totalCustomers;
             for(int i = customersToday; i > 0; i--)
             {
                 Customer customer = new Customer();
