@@ -31,7 +31,7 @@ namespace LemonadeStand
                 player.SetRecipe();
                 player.SetPrice();
                 Day day = new Day(random);
-                day.runDay(player, weather);
+                day.RunDay(player, weather);
                 Console.Clear();
             }
             Console.WriteLine("You made {0} over 7 days", (player.playerInventory.cash-20m));

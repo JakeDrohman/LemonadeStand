@@ -21,15 +21,16 @@ namespace LemonadeStand
         {
             customersToday = random.Next(60, 121);
         }
-        public void runDay(Player player,Weather weather)
+        public void RunDay(Player player,Weather weather)
         {
             player.playerInventory.FillPitcher(player);
             calculateCustomersToday();
+            customersToday += totalCustomers;
             for(int i = customersToday; i > 0; i--)
             {
                 Customer customer = new Customer();
                 customers.Add(customer);
-                customer.CalculateWillingnessToPay(weather,random);
+                customer.CalculateWillingnessToPay(weather,random,player);
                 bool buy = customer.CheckIfBuy(player);
                 SellGlass(player, buy,customer);
                 
