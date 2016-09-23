@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace LemonadeStand
 {
     class Game
     {
         int totalCustomers;
+        int customersSoldTo;
         Weather weather;
         Shop shop;
         Random random;
@@ -39,8 +39,15 @@ namespace LemonadeStand
                 Console.Clear();
             }
             totalCustomers = customerList.Count;
-
-            Console.WriteLine("You made {0} over 7 days and sold lemonade to {1} out of {2} customers",(player.playerInventory.cash-20m), ,totalCustomers);
+            foreach (Customer customer in customerList)
+            {
+                if (customer.bought == true)
+                {
+                    customersSoldTo++;
+                }
+            }
+            Console.WriteLine("You made {0} over 7 days and sold lemonade to {1} out of {2}" +
+                " customers", (player.playerInventory.cash - 20m), customersSoldTo, totalCustomers); 
             Console.ReadLine();
         }
     }

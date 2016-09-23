@@ -13,7 +13,7 @@ namespace LemonadeStand
         decimal baseWillingnessToPay = 0.5m;
         Random random;
         int randomInteger;
-        bool bought;
+        public bool bought;
         int optimalLemons;
         decimal optimalIce;
         decimal optimalIceVariable;
@@ -33,7 +33,7 @@ namespace LemonadeStand
             CalculateBaseWillingnessToPay(weather);
             CalculatePreferenceVariable(player, random, weather);
             randomInteger = (random.Next(1, 31));
-            willingnessToPay = (baseWillingnessToPay - (weather.weather * weathermultiplier) + (randomInteger*0.01m) + preferenceBoost);
+            willingnessToPay = (baseWillingnessToPay - (weather.weather * weathermultiplier) + (randomInteger*0.01m) + preferenceBoostVariable);
         }
         public void CalculateBaseWillingnessToPay(Weather weather)
         {

@@ -12,7 +12,6 @@ namespace LemonadeStand
         {
             weather.DecideTemperature();
             weather.DecideWeather();
-            weather.ShowWeather();
             DisplayShopHome(inventory, weather);
 
         }
@@ -53,8 +52,8 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input(all lowercase)");
-                    DisplayShopHome(inventory,weather);
                     Console.Clear();
+                    DisplayShopHome(inventory,weather);
                     break;
             }
         }
@@ -107,6 +106,7 @@ namespace LemonadeStand
                     DisplayShopHome(inventory, weather);
                     break;
                 case ("go back"):
+                    Console.Clear();
                     DisplayShopHome(inventory, weather);
                     break;
                 default:
