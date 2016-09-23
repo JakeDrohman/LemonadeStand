@@ -49,6 +49,7 @@ namespace LemonadeStand
             Console.WriteLine("You made {0} over 7 days and sold lemonade to {1} out of {2}" +
                 " customers", (player.playerInventory.cash - 20m), customersSoldTo, totalCustomers); 
             Console.ReadLine();
+            
         }
     }
 }

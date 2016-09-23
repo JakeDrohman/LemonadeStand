@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Player
     {
         public string name;
-        public Inventory playerInventory = new Inventory();
+        public Inventory playerInventory;
         public int recipeLemons;
         public int recipeSugar;
         public int recipeIce;
@@ -17,6 +17,7 @@ namespace LemonadeStand
 
         public Player(string name)
         {
+            playerInventory = new Inventory();
             this.name = name;
         }
         public void SetRecipe()

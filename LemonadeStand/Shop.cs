@@ -52,6 +52,7 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Please enter a valid input(all lowercase)");
+                    Console.ReadKey();
                     Console.Clear();
                     DisplayShopHome(inventory,weather);
                     break;
