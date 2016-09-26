@@ -93,5 +93,20 @@ namespace LemonadeStand
                 SetPrice();
             }
         }
+        public void AddPerDayResources()
+        {
+            playerInventory.addCups(75);
+            playerInventory.removeCash(2.00m);
+            playerInventory.addIce(250);
+            playerInventory.removeCash(1.99m);
+            playerInventory.addLemons(50);
+            playerInventory.removeCash(3.98m);
+            playerInventory.addSugar(48);
+            playerInventory.removeCash(2.99m);
+        }
+        public void SetComputerPrice(Random random)
+        {
+            glassPrice = Convert.ToDecimal(random.Next(3, 7)*.1);
+        }
     }
 }

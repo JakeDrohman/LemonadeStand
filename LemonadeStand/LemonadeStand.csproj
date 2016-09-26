@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Computer.cs" />
     <Compile Include="Inventory\Inventory.cs" />
     <Compile Include="Inventory\Cup.cs" />
     <Compile Include="Day\Customer.cs" />
